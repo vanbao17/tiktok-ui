@@ -18,6 +18,9 @@
     &:hover {
         background: rgba(22, 24, 35, 0.03);
     }
+    &.borderTop {
+        border-top: 1px solid rgba(22, 24, 35, 0.12);
+    }
 }
 .header {
     position: relative;

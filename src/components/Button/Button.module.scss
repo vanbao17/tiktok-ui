@@ -7,6 +7,7 @@
     border-radius: 4px;
     font-size: 1.6rem;
     font-weight: 700;
+    font-family: 'ProximaNova', sans-serif;
     cursor: pointer;
     background-color: var(--white);
     border: 1px solid transparent;
@@ -17,6 +18,23 @@
     &.disable {
         opacity: 0.5;
         pointer-events: none;
+    }
+    &.bigFont {
+        font-family: 'SofiaPro';
+        width: 100%;
+        height: 48px;
+        justify-content: flex-start;
+        font-size: 1.8rem;
+        font-weight: 900;
+        padding: 8px;
+        margin-left: 0px;
+        line-height: 15px;
+        .icon {
+            margin-right: 8px;
+        }
+        &:hover {
+            background: rgba(22, 24, 35, 0.03);
+        }
     }
 }
 .icon + .title,

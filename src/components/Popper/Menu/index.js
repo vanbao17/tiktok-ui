@@ -29,7 +29,7 @@ function Menu({ children, items = [] }) {
     return (
         <Tippy
             interactive
-            visible
+            // visible
             delay={[0, 700]}
             placement="bottom-end"
             render={(attrs) => (
@@ -47,6 +47,9 @@ function Menu({ children, items = [] }) {
                     </PopperWrapper>
                 </div>
             )}
+            onHide={() => {
+                sethistory((prev) => prev.slice(0, 1));
+            }}
         >
             {children}
         </Tippy>
