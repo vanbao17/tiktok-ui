@@ -7,6 +7,7 @@ import AccountItem from '~/components/AccountItem';
 import styles from './Search.module.scss';
 import { useState, useRef, useEffect } from 'react';
 import { useDebounce } from '~/Hooks';
+import App from '~/App';
 const cx = classNames.bind(styles);
 function Search() {
     const [searchText, setsearchText] = useState('');
@@ -31,64 +32,75 @@ function Search() {
     const handleOutside = () => {
         setshowTippySearch(false);
     };
-
+    const handleOnchange = (e) => {
+        const valueSearch = e.target.value;
+        if (!valueSearch.startsWith(' ')) {
+            setsearchText(valueSearch);
+        }
+    };
     return (
-        <HeadlessTippy
-            interactive={true}
-            visible={showTippySearch && searchResult.length > 0}
-            placement="bottom-end"
-            render={(attrs) => (
-                <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                    <PopperWrapper>
-                        <h4 className={cx('search-title')}>Account</h4>
-                        {searchResult.map((user) => {
-                            return (
-                                <AccountItem
-                                    key={user.id}
-                                    avatar={user.avatar}
-                                    nameUser={user.full_name}
-                                    nickName={user.nickname}
-                                    tick={user.tick}
-                                    to={'/@'}
-                                />
-                            );
-                        })}
-                    </PopperWrapper>
-                </div>
-            )}
-            onClickOutside={handleOutside}
-        >
-            <div className={cx('search')}>
-                <input
-                    ref={inputRef}
-                    value={searchText}
-                    type="text"
-                    placeholder="Tìm kiếm tài khoản và video"
-                    spellCheck={false}
-                    onChange={(e) => {
-                        setsearchText(e.target.value);
-                    }}
-                    onFocus={() => {
-                        setshowTippySearch(true);
-                    }}
-                />
-                {loading && <FontAwesomeIcon icon={faSpinner} className={cx('loadding')}></FontAwesomeIcon>}
-                {!!searchText && !loading && (
+        <div>
+            <HeadlessTippy
+                appendTo={() => document.body}
+                interactive={true}
+                visible={showTippySearch && searchResult.length > 0}
+                placement="bottom-end"
+                render={(attrs) => (
+                    <div className={cx('search-result')} tabIndex="-1" {...attrs}>
+                        <PopperWrapper>
+                            <h4 className={cx('search-title')}>Account</h4>
+                            {searchResult.map((user) => {
+                                return (
+                                    <AccountItem
+                                        key={user.id}
+                                        avatar={user.avatar}
+                                        nameUser={user.full_name}
+                                        nickName={user.nickname}
+                                        tick={user.tick}
+                                        to={'/@'}
+                                    />
+                                );
+                            })}
+                        </PopperWrapper>
+                    </div>
+                )}
+                onClickOutside={handleOutside}
+            >
+                <div className={cx('search')}>
+                    <input
+                        ref={inputRef}
+                        value={searchText}
+                        type="text"
+                        placeholder="Tìm kiếm tài khoản và video"
+                        spellCheck={false}
+                        onChange={handleOnchange}
+                        onFocus={() => {
+                            setshowTippySearch(true);
+                        }}
+                    />
+                    {loading && <FontAwesomeIcon icon={faSpinner} className={cx('loadding')}></FontAwesomeIcon>}
+                    {!!searchText && !loading && (
+                        <button
+                            className={cx('close')}
+                            onClick={() => {
+                                setsearchText('');
+                                inputRef.current.focus();
+                            }}
+                        >
+                            <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
+                        </button>
+                    )}
                     <button
-                        className={cx('close')}
-                        onClick={() => {
-                            setsearchText('');
-                            inputRef.current.focus();
+                        className={cx('search-btn')}
+                        onMouseDown={(e) => {
+                            e.preventDefault();
                         }}
                     >
-                        <FontAwesomeIcon icon={faCircleXmark}></FontAwesomeIcon>
+                        <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
                     </button>
-                )}
-                <button className={cx('search-btn')}>
-                    <FontAwesomeIcon icon={faMagnifyingGlass}></FontAwesomeIcon>
-                </button>
-            </div>
-        </HeadlessTippy>
+                </div>
+            </HeadlessTippy>
+        </div>
     );
 }
 

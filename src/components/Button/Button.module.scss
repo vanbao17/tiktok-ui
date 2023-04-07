@@ -1,12 +1,11 @@
 .wrapper {
-    min-width: 100px;
+    // min-width: 100px;
     display: inline-flex;
     justify-content: center;
     align-items: center;
     padding: 8px 16px;
     border-radius: 4px;
     font-size: 1.6rem;
-    font-weight: 700;
     font-family: 'ProximaNova', sans-serif;
     cursor: pointer;
     background-color: var(--white);
@@ -81,4 +80,15 @@
     display: inline-block;
     width: 24px;
     text-align: center;
+}
+.circle {
+    width: 32px;
+    height: 32px;
+    color: #fff;
+    border-radius: 50%;
+    background-color: var(--primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    &:hover {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+    }
 }

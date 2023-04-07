@@ -9,7 +9,7 @@
 }
 .search {
     display: flex;
-    width: 361px;
+    width: 415px;
     height: 46px;
     background: rgba(22, 24, 35, 0.06);
     border-radius: 92px;
@@ -24,6 +24,7 @@
         border: none;
         outline: none;
         background-color: transparent;
+        font-family: 'ProximaNova', sans-serif;
     }
     input:not(:placeholder-shown) ~ .search-btn {
         color: rgba(22, 24, 35, 0.75);

@@ -4,6 +4,8 @@
     border-radius: 8px;
     box-shadow: rgb(0 0 0 /12%) 0px 2px 12px;
     background-color: rgb(255, 255, 255);
-    padding-top: 8px;
-    // max-height: min((100vh -96px)-60px, 734px);
+    // padding-top: 8px;
+    max-height: min(calc(100vh - 96px - 60px), 734px);
+    display: flex;
+    flex-direction: column;
 }

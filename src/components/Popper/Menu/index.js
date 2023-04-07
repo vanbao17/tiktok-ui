@@ -5,9 +5,10 @@ import 'tippy.js/dist/tippy.css'; // optional
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import MenuItem from './MenuItem';
 import Header from './Header';
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 const cx = classNames.bind(styles);
-function Menu({ children, items = [] }) {
+function Menu({ children, items = [], hideOnClick = false }) {
     const [history, sethistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
     const renderItem = () => {
@@ -32,6 +33,7 @@ function Menu({ children, items = [] }) {
             // visible
             delay={[0, 700]}
             placement="bottom-end"
+            hideOnClick={hideOnClick}
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('menu-popper')}>
@@ -43,7 +45,7 @@ function Menu({ children, items = [] }) {
                                 }}
                             />
                         )}
-                        {renderItem()}
+                        <div className={cx('menu-body')}>{renderItem()}</div>
                     </PopperWrapper>
                 </div>
             )}
@@ -55,5 +57,9 @@ function Menu({ children, items = [] }) {
         </Tippy>
     );
 }
-
+Menu.propTypes = {
+    children: PropTypes.node.isRequired,
+    items: PropTypes.array,
+    hideOnClick: PropTypes.bool,
+};
 export default Menu;

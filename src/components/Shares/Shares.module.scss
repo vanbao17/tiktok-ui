@@ -1,0 +1,36 @@
+.wrapper {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    width: 280px;
+    padding: 8px 0px;
+    max-height: 448px;
+    background-color: rgb(255, 255, 255);
+    padding-right: 4px;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 4px 16px;
+    overflow-y: scroll;
+    position: relative;
+}
+.circle-tippy {
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #fff;
+    position: fixed;
+    bottom: -8px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 16px;
+    left: 37px;
+}
+.share-item {
+    padding: 11px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0px 3px 0px 4px;
+    cursor: pointer;
+    &:hover {
+        background: rgba(22, 24, 35, 0.03);
+    }
+}
